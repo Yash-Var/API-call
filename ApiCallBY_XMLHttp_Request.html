@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XMLHttpRequest</title>
+</head>
+
+<body>
+
+    <div id="container"></div>
+    <script>
+        const container = document.querySelector('#container');
+        const request = new XMLHttpRequest;
+        request.open('GET', "https://my-burger-api.herokuapp.com/burgers");
+        request.send();
+
+        request.addEventListener('load',function(){
+           const [data,yash] = JSON.parse(this.responseText);
+        // console.log(yash.addresses);
+        const htmldata=`
+        Name is ${yash.name}
+        `;
+        container.insertAdjacentHTML("afterbegin",htmldata);
+        });
+
+    </script>
+</body>
+
+</html>
